@@ -3,7 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Action To Do</title>
+    <link rel="icon" type="image/x-icon" href="./icons/action-icon.svg" />
   </head>
-  <body></body>
+  <body>
+    <aside>
+      <div id="logo">
+        <img src="./icons/action-logo.svg" alt="" />
+      </div>
+      <div id="tabs">
+        <div id="today-tab" class="tab selected">
+          <h2 class="selector">//</h2>
+          <h2>Today</h2>
+        </div>
+        <div id="week-tab" class="tab">
+          <h2 class="selector">//</h2>
+          <h2>Next 7 days</h2>
+        </div>
+        <div id="projects" class="tab">
+          <h2 class="selector">//</h2>
+          <h2>Projects</h2>
+        </div>
+        <div id="notes" class="tab">
+          <h2 class="selector">//</h2>
+          <h2>Notes</h2>
+        </div>
+      </div>
+    </aside>
+    <div id="content"></div>
+  </body>
 </html>

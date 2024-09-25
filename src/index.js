@@ -1,6 +1,4 @@
-import taskManager from "./taskManager";
-
-let TaskManager = taskManager();
-TaskManager.init();
-
-console.log(TaskManager.getAllTasks());
+import { taskManager } from "./taskManager";
+import { projectManager } from "./projectManager";
+import { noteManager } from "./noteManager";
+import "./style.css";
