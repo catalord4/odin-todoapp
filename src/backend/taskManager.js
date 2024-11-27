@@ -6,7 +6,7 @@ const taskManager = (function () {
     description: "",
     state: false,
     project: 0,
-    due: "",
+    dueDate: "",
     masterTask: 0,
   });
 

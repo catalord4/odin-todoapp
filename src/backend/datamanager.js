@@ -2,6 +2,7 @@ import { idManager } from "./id";
 
 const dataManager = function (dataName, dataProperties) {
   let data;
+  let dataUpdateCallbacks = [];
 
   const init = () => {
     let localData = JSON.parse(localStorage.getItem(dataName));
@@ -26,9 +27,20 @@ const dataManager = function (dataName, dataProperties) {
 
   const updateLocalStorage = () => {
     localStorage.setItem(dataName, JSON.stringify(data));
+    invokeCallbacks();
   };
   const getIndex = (id) => {
-    return data.indexOf((element) => element.id == id);
+    return data.findIndex((element) => element.id == id);
+  };
+
+  const addCallbackOnDataUpdate = (callback) => {
+    dataUpdateCallbacks.push(callback);
+  };
+
+  const invokeCallbacks = () => {
+    for (let index = 0; index < dataUpdateCallbacks.length; index++) {
+      dataUpdateCallbacks[index]();
+    }
   };
 
   const create = (properties) => {
@@ -41,7 +53,7 @@ const dataManager = function (dataName, dataProperties) {
   };
   const get = (properties) => {
     let found = data.find((element) => isDataSimilar(element, properties));
-    if (found == undefined) throw new Error("Data not found!");
+    if (found == undefined) return dataProperties;
     else return found;
   };
 
@@ -59,10 +71,11 @@ const dataManager = function (dataName, dataProperties) {
 
   const removeAll = (properties = {}) => {
     let toRemove = data.filter((element) => isDataSimilar(element, properties));
-    toRemove.array.forEach((element) => {
+    toRemove.forEach((element) => {
       let dataIndex = getIndex(element.id);
       data.splice(dataIndex, 1);
     });
+    updateLocalStorage();
   };
 
   const getAll = (properties = {}) => {
@@ -76,6 +89,7 @@ const dataManager = function (dataName, dataProperties) {
     update,
     remove,
     removeAll,
+    addCallbackOnDataUpdate,
   };
 };
 

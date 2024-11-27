@@ -1,4 +1,6 @@
-import { taskManager } from "./taskManager";
-import { projectManager } from "./projectManager";
-import { noteManager } from "./noteManager";
-import "./style.css";
+import "./frontend/css/style.css";
+import { mainPage } from "./frontend/home/mainPage";
+
+const index = (function () {
+  document.body.appendChild(mainPage());
+})();
